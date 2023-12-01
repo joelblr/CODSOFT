@@ -384,7 +384,6 @@ class App(CTk.CTk) :
 
             for w in self.frames['main'].F2.winfo_children() :
                 w.grid_forget()
-            
 
             for ContNo in data :
                 ds.contacts[ContNo]['widgets'][0].pack(expand=True, fill=CTk.X, pady=2)
