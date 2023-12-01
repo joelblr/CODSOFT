@@ -379,12 +379,17 @@ class App(CTk.CTk) :
                 elif search.lower() in ds.contacts[ContNo]['details']['contact_name'].lower() :
                     data.append(ContNo)
         finally :
-            for widget in self.frames['main'].list_frame.winfo_children() :
-                widget.grid_forget()
+            for w in self.frames['main'].F1.winfo_children() :
+                w.pack_forget()
+
+            for w in self.frames['main'].F2.winfo_children() :
+                w.grid_forget()
+            
 
             for ContNo in data :
-                for w in ds.contacts[ContNo]['widgets'] :
-                    w.pack()
+                ds.contacts[ContNo]['widgets'][0].pack(expand=True, fill=CTk.X, pady=2)
+                ds.contacts[ContNo]['widgets'][1].grid(row=ContNo, column=0, pady=2)
+                ds.contacts[ContNo]['widgets'][2].grid(row=ContNo, column=1, pady=2)
 
 
     def edit_contact(self, idx) :
@@ -471,10 +476,6 @@ class App(CTk.CTk) :
 
 
 
-
-
-
-
 class DataStorage() :
 
     def __init__(self) :
@@ -502,7 +503,6 @@ class DataStorage() :
         self.edit_img = CTk.CTkImage(Image.open('./images/edit.png'), size = (26,26))
         self.delete_img = CTk.CTkImage(Image.open('./images/bin.png'), size = (26,26))
         self.search_img = CTk.CTkImage(Image.open('./images/find.png'), size = (26,26))
-
 
         self.wlps = {
             'wlp 1' : CTk.CTkImage(Image.open('./images/p1.jpeg'), size = (600, 500)),
